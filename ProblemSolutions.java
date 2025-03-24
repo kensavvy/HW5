@@ -114,9 +114,34 @@ class ProblemSolutions {
 
     public int[] sort2Arrays(int[] array1, int[] array2) {
 
-        // ADD YOU CODE HERE
+        // ADD YOUR CODE HERE
 
-        return null;
+        // Initialize new PriorityQueue
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // Add all elemets from array1 into prioriy queue
+        for (int num : array1) {
+            minHeap.offer(num);
+        }
+
+        // Add all elements from array2 into priority queue
+        for (int num : array2) {
+            minHeap.offer(num);
+        }
+
+        // Initialize empty array which will store both array1 and array2 elements
+        int[] sortedArray = new int[array1.length + array2.length];
+
+        // Initialize index counter
+        int i = 0;
+
+        // Remove and return the smallest element in heap, placing it in the sorted array
+        while (!minHeap.isEmpty()) {
+            sortedArray[i++] = minHeap.poll();
+        }
+
+        // After the heap is empty, sortedArray will be fully populated in order
+        return sortedArray;
 
     } // method sort2Arrays
 
