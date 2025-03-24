@@ -40,23 +40,26 @@ class ProblemSolutions {
         // Initialize new HashSet
         Set<Integer> set = new HashSet<>();
 
-        // Add list1 into set
+        // Add elements from list1 into set
         for (int num : list1) {
             set.add(num);
         }
 
         // Loop through list2 to check if every element is also in list1
         for (int num : list2) {
+
             if (!set.contains(num)) {
                 return false;
             }
+
         }
 
+        // Update boolean variable to be true if every element passes
         isSubset = true;
 
         return isSubset;
 
-    }
+    } // method isSubset
 
 
     /**
@@ -76,8 +79,24 @@ class ProblemSolutions {
 
         // ADD YOUR CODE HERE
 
-        return 0;
-    }
+        // Initialize new PriorityQueue 
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // Insert elements in array into priority queue
+        for (int num : array) {
+            minHeap.offer(num);
+
+            // If heap size is greater than k, remove and return smallest element
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+
+        }
+
+        // Return root of heap, the kth largest element
+        return minHeap.peek();
+
+    } // method findKthLargest
 
 
     /**
@@ -98,6 +117,7 @@ class ProblemSolutions {
         // ADD YOU CODE HERE
 
         return null;
-    }
 
-}
+    } // method sort2Arrays
+
+} // class ProblemSolutions
