@@ -224,8 +224,29 @@ class BloomFilter {
         // this class on available methods. You can also see how method 'add'
         // in this class uses the object.
 
-        return false;
-    }
+        // Initialize boolean variable as false, assuming not in set
+        boolean found = false;
+
+        // Loop through all hash functions
+        for (int n = 0; n < noHashes; n++) {
+        
+            // Get hash code for current hash function
+            long hc = hashCode(s, n);
+
+            // Calcualte bit index, ensuring it is within the valid range
+            int bitNo = (int) (hc) & this.hashMask;
+
+            // Update boolean to true if bit index is within the set
+            if (data.get(bitNo)) {
+                found = true;
+            }
+
+        }
+    
+        // Return found or not found status 
+        return found;
+
+    } // method contains
 
 
     /*********************************
