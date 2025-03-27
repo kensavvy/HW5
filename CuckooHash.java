@@ -250,8 +250,56 @@ public class CuckooHash<K, V> {
 		// Also make sure you read this method's prologue above, it should help
 		// you. Especially the two HINTS in the prologue.
 
-		return;
-	}
+		// Initialize hash position for given key
+		int hashPosition = hash1(key);
+
+		// If there is key-value pair duplicate, return it to prevent insertion
+		if (table[hashPosition] != null && table[hashPosition].getBucKey().equals(key) &&
+		table[hashPosition].getValue().equals(value)) {
+			return;
+		}
+
+		// Loop through table without exceeding maximum capacity
+		for (int i = 0; i < CAPACITY; i++) {
+			
+			// If the current key is null, create new key-value pair, insert and return
+			if (table[hashPosition] == null) {
+				table[hashPosition] = new Bucket<>(key, value);
+				return;
+			}
+
+			// Initialize variable to store key at current position before moving on
+			K prevKey = table[hashPosition].getBucKey();
+
+			// Initialize variable to store value at current position before moving on
+			V prevVal = table[hashPosition].getValue();
+
+			// Insert new key-value pair into table at current positino
+			table[hashPosition] = new Bucket<>(key, value);
+
+			// Swap current key with previous key after insertion
+			key = prevKey;
+
+			// Swap current value with previous value after insertion
+			value = prevVal;
+
+			// If key was initially evicted from hash1, push key to hash2 position
+			if (hash1(key) == hashPosition) {
+				hashPosition = hash2(key);
+
+			// If key was initially evicted from hash2, push key to hash1 position
+			} else {
+				hashPosition = hash1(key);
+			}
+		}
+
+		// Prevent infinite loop by growing table when loop reaches max capcity
+		rehash();
+
+		// Recursively call method to reattempt insertion after table is grown
+		put(key, value);
+
+	} // method CuckooHash
 
 
 	/**

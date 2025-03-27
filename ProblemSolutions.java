@@ -122,7 +122,7 @@ class ProblemSolutions {
         // Initialize new PriorityQueue
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        // Add all elemets from array1 into prioriy queue
+        // Add all elemets from array1 into priority queue
         for (int num : array1) {
             minHeap.offer(num);
         }
@@ -143,7 +143,7 @@ class ProblemSolutions {
             sortedArray[i++] = minHeap.poll();
         }
 
-        // After the heap is empty, sortedArray will be fully populated in order
+        // After the heap is empty, sortedArray will be fully populated in ascending order
         return sortedArray;
 
     } // method sort2Arrays
