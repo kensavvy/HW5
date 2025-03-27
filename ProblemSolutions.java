@@ -79,7 +79,7 @@ class ProblemSolutions {
 
         // ADD YOUR CODE HERE
 
-        // Initialize new PriorityQueue 
+        // Initialize new PriorityQueue which implements a minHeap by default
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
         // Insert elements in array into priority queue
@@ -90,10 +90,13 @@ class ProblemSolutions {
             if (minHeap.size() > k) {
                 minHeap.poll();
             }
+        
+        // Continue looping through array, keeping minHeap restricted to k elements,
+        // until all elements are processed and the heap contains the k largest elements
 
         }
 
-        // Return root of heap, the kth largest element
+        // Return root of heap, the smallest value AKA the kth largest element
         return minHeap.peek();
 
     } // method findKthLargest

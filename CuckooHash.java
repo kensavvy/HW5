@@ -188,7 +188,7 @@ public class CuckooHash<K, V> {
 	 * Each element's initial location will always be defined
 	 * by h1(key). If later it is kicked out of that bucket location by 
      * another element insertion, it will move back and forth between those
-     *  two hash locations (aka, bucket locations).
+     * two hash locations (aka, bucket locations).
 	 *
 	 * On its initial invocation, this method places the passed <key,value>
 	 * element at its h1(key) bucket location. If an element is already located
